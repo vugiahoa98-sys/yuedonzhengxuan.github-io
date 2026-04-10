@@ -1,0 +1,570 @@
+/**
+ * ============================================================
+ *  粤东甄选 — 全局样式表
+ *  品牌色系：白茶叶绿 × 和谐土 × 朱砂红 × 金色点缀
+ *  设计风格：新国潮·潮汕文化
+ * ============================================================
+ */
+
+/* ======================== 全局变量 ======================== */
+page {
+  /* —— 品牌主色 —— */
+  --color-primary: #597445;          /* 白茶叶绿 */
+  --color-primary-dark: #3D5530;     /* 深茶绿（hover/active） */
+  --color-primary-light: #658147;    /* 浅茶绿 */
+
+  /* —— 品牌辅助色 —— */
+  --color-secondary: #8B7158;        /* 和谐土 */
+  --color-secondary-light: #C3A978;  /* 浅和谐土 */
+  --color-accent-cream: #E7F0DC;     /* 柔和米绿 */
+  --color-accent-warm: #F5EFE0;      /* 暖米色 */
+
+  /* —— 强调/功能色 —— */
+  --color-red: #C14443;              /* 朱砂红 */
+  --color-red-dark: #A03030;         /* 深朱砂 */
+  --color-gold: #C3A978;             /* 金色点缀 */
+  --color-gold-dark: #A88B5E;        /* 深金色 */
+  --color-success: #52C41A;
+  --color-warning: #FAAD14;
+  --color-info: #597445;
+
+  /* —— 背景色 —— */
+  --color-bg-dark: #1A3A2A;          /* 深墨绿背景 */
+  --color-bg-medium: #2D5A3F;        /* 中墨绿 */
+  --color-bg-page: #F5EFE0;          /* 页面底色（暖米） */
+  --color-bg-card: #FFFDF8;          /* 卡片底色 */
+  --color-bg-card-alt: #FAF7F0;      /* 卡片备选底色 */
+  --color-bg-overlay: rgba(26, 58, 42, 0.6); /* 遮罩 */
+
+  /* —— 文字色 —— */
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-light: #999999;
+  --color-text-white: #FFFFFF;
+  --color-text-gold: #C3A978;
+  --color-text-red: #C14443;
+
+  /* —— 边框 —— */
+  --color-border: #E8E0D0;
+  --color-border-light: #F0EBE0;
+  --color-divider: #E8E0D0;
+
+  /* —— 字体 —— */
+  --font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  --font-size-xs: 20rpx;
+  --font-size-sm: 24rpx;
+  --font-size-base: 28rpx;
+  --font-size-md: 30rpx;
+  --font-size-lg: 32rpx;
+  --font-size-xl: 36rpx;
+  --font-size-xxl: 40rpx;
+  --font-size-title: 48rpx;
+
+  /* —— 圆角 —— */
+  --radius-xs: 4rpx;
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
+  --radius-xl: 24rpx;
+  --radius-xxl: 32rpx;
+  --radius-round: 999rpx;
+
+  /* —— 间距 —— */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 12rpx;
+  --spacing-md: 16rpx;
+  --spacing-base: 24rpx;
+  --spacing-lg: 32rpx;
+  --spacing-xl: 40rpx;
+  --spacing-xxl: 48rpx;
+
+  /* —— 阴影 —— */
+  --shadow-sm: 0 2rpx 8rpx rgba(89, 116, 69, 0.06);
+  --shadow-card: 0 4rpx 16rpx rgba(89, 116, 69, 0.08);
+  --shadow-float: 0 8rpx 32rpx rgba(89, 116, 69, 0.12);
+  --shadow-heavy: 0 12rpx 48rpx rgba(26, 58, 42, 0.18);
+
+  /* —— 动画 —— */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* 全局基础 */
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ======================== 样式重置 ======================== */
+view, scroll-view, swiper, swiper-item, movable-area, movable-view,
+cover-view, cover-image, icon, text, rich-text, progress, button,
+checkbox-group, checkbox, form, input, label, picker, picker-view,
+radio-group, radio, slider, switch, textarea, navigator, image,
+video, camera, live-player, live-pusher, map, canvas {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 按钮重置 */
+button {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  line-height: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+button::after {
+  border: none;
+}
+
+/* 图片默认行为 */
+image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ======================== 通用布局类 ======================== */
+
+/* Flex 布局 */
+.flex { display: flex; }
+.flex-row { display: flex; flex-direction: row; align-items: center; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+
+/* 定位 */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* 尺寸 */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* 溢出 */
+.overflow-hidden { overflow: hidden; }
+.overflow-scroll { overflow: scroll; -webkit-overflow-scrolling: touch; }
+
+/* 内边距 */
+.container { padding: 0 var(--spacing-base); }
+.p-sm { padding: var(--spacing-sm); }
+.p-base { padding: var(--spacing-base); }
+.p-lg { padding: var(--spacing-lg); }
+.px-base { padding-left: var(--spacing-base); padding-right: var(--spacing-base); }
+.py-base { padding-top: var(--spacing-base); padding-bottom: var(--spacing-base); }
+.py-lg { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg); }
+
+/* 外边距 */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-base { margin-top: var(--spacing-base); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-base { margin-bottom: var(--spacing-base); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.ml-sm { margin-left: var(--spacing-sm); }
+.ml-base { margin-left: var(--spacing-base); }
+.mr-sm { margin-right: var(--spacing-sm); }
+.mr-base { margin-right: var(--spacing-base); }
+
+/* ======================== 文字排版 ======================== */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-md { font-size: var(--font-size-md); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-xxl { font-size: var(--font-size-xxl); }
+.text-title { font-size: var(--font-size-title); }
+
+.text-bold { font-weight: bold; }
+.text-semibold { font-weight: 600; }
+.text-normal { font-weight: normal; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-light { color: var(--color-text-light); }
+.text-white { color: var(--color-text-white); }
+.text-green { color: var(--color-primary); }
+.text-red { color: var(--color-red); }
+.text-gold { color: var(--color-gold); }
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-2line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 价格文字专用 */
+.price {
+  color: var(--color-red);
+  font-weight: bold;
+  font-family: "DIN Alternate", "Helvetica Neue", sans-serif;
+}
+.price-symbol {
+  font-size: 0.7em;
+  margin-right: 2rpx;
+}
+.price-original {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  text-decoration: line-through;
+  font-weight: normal;
+}
+
+/* ======================== 按钮系统 ======================== */
+
+/* 主按钮 — 朱砂红渐变 */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  background: linear-gradient(135deg, #D4524D 0%, #C14443 50%, #A03030 100%);
+  color: var(--color-text-white);
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  border-radius: var(--radius-round);
+  letter-spacing: 2rpx;
+  box-shadow: 0 6rpx 20rpx rgba(193, 68, 67, 0.3);
+  transition: all var(--transition-fast);
+}
+.btn-primary:active {
+  transform: scale(0.96);
+  opacity: 0.85;
+  box-shadow: 0 2rpx 8rpx rgba(193, 68, 67, 0.2);
+}
+
+/* 次按钮 — 白茶叶绿 */
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  background: var(--color-primary);
+  color: var(--color-text-white);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border-radius: var(--radius-round);
+  transition: all var(--transition-fast);
+}
+.btn-secondary:active {
+  background: var(--color-primary-dark);
+  transform: scale(0.96);
+}
+
+/* 轮廓按钮 — 金色描边 */
+.btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72rpx;
+  background: transparent;
+  color: var(--color-gold);
+  font-size: var(--font-size-sm);
+  border: 2rpx solid var(--color-gold);
+  border-radius: var(--radius-round);
+  transition: all var(--transition-fast);
+}
+.btn-outline:active {
+  background: rgba(195, 169, 120, 0.1);
+}
+
+/* 小按钮 */
+.btn-sm {
+  height: 56rpx;
+  padding: 0 24rpx;
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-round);
+}
+
+/* 禁用态 */
+.btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* 文字按钮 */
+.btn-text {
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+}
+.btn-text:active {
+  opacity: 0.6;
+}
+
+/* ======================== 卡片系统 ======================== */
+
+/* 国潮风卡片 — 带古典边框感 */
+.card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* 带边框卡片 */
+.card-bordered {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  border: 2rpx solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* 国潮深色卡片（用于页面头部） */
+.card-dark {
+  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: var(--color-text-white);
+}
+
+/* 国潮标题装饰卡片 */
+.card-guochao {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  border: 2rpx solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  position: relative;
+}
+.card-guochao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold-dark) 50%, var(--color-gold) 100%);
+}
+
+/* ======================== 标签系统 ======================== */
+
+/* 基础标签 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 12rpx;
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* 绿色标签 */
+.tag-green {
+  background: rgba(89, 116, 69, 0.1);
+  color: var(--color-primary);
+  border: 1rpx solid rgba(89, 116, 69, 0.2);
+}
+
+/* 红色标签 */
+.tag-red {
+  background: rgba(193, 68, 67, 0.1);
+  color: var(--color-red);
+  border: 1rpx solid rgba(193, 68, 67, 0.2);
+}
+
+/* 金色标签 */
+.tag-gold {
+  background: rgba(195, 169, 120, 0.15);
+  color: var(--color-gold-dark);
+  border: 1rpx solid rgba(195, 169, 120, 0.3);
+}
+
+/* 满减标签 */
+.tag-promo {
+  background: linear-gradient(135deg, #FFF5F0, #FFF0EB);
+  color: var(--color-red);
+  border: 1rpx solid rgba(193, 68, 67, 0.15);
+  font-size: var(--font-size-xs);
+  padding: 2rpx 10rpx;
+  border-radius: var(--radius-xs);
+}
+
+/* 徽章（数字角标） */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32rpx;
+  height: 32rpx;
+  padding: 0 8rpx;
+  background: var(--color-red);
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: bold;
+  border-radius: var(--radius-round);
+  line-height: 1;
+}
+
+/* ======================== 表单元素 ======================== */
+.input {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 var(--spacing-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background: var(--color-bg-card);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+.input-focus {
+  border-color: var(--color-primary);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: var(--spacing-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background: var(--color-bg-card);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* ======================== 分割线 ======================== */
+.divider {
+  height: 2rpx;
+  background: var(--color-divider);
+  margin: var(--spacing-base) 0;
+}
+.divider-light {
+  height: 1rpx;
+  background: var(--color-border-light);
+}
+
+/* ======================== 国潮装饰 ======================== */
+
+/* 国潮章节标题 — 居中带左右装饰线 */
+.section-title-guochao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+}
+.section-title-guochao::before,
+.section-title-guochao::after {
+  content: '';
+  flex: 1;
+  max-width: 80rpx;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, var(--color-gold));
+}
+.section-title-guochao::after {
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+}
+.section-title-guochao text {
+  padding: 0 var(--spacing-base);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--color-text-primary);
+  letter-spacing: 4rpx;
+}
+
+/* 祥云底纹（用作背景装饰） */
+.bg-pattern-cloud {
+  background-image:
+    radial-gradient(ellipse at 20% 80%, rgba(89, 116, 69, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(195, 169, 120, 0.03) 0%, transparent 50%);
+}
+
+/* 顶部深色区域渐变（用于页面头部） */
+.bg-header-dark {
+  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 70%, var(--color-bg-page) 100%);
+}
+
+/* 金色分隔装饰线 */
+.gold-line {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: var(--spacing-lg) var(--spacing-xl);
+}
+
+/* ======================== 安全区域 ======================== */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* 底部操作栏占位（防止内容被遮挡） */
+.bottom-bar-placeholder {
+  height: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+/* 自定义 TabBar 占位 */
+.tabbar-placeholder {
+  height: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+/* ======================== 动画 ======================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.anim-fade-in { animation: fadeIn var(--transition-base) both; }
+.anim-fade-in-up { animation: fadeInUp var(--transition-slow) both; }
+.anim-scale-in { animation: scaleIn var(--transition-base) both; }
+
+/* ======================== 骨架屏闪光效果 ======================== */
+.skeleton-shine {
+  background: linear-gradient(90deg, #F0EBE0 25%, #FAF7F0 37%, #F0EBE0 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

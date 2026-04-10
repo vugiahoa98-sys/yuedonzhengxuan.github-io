@@ -1,0 +1,91 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/ar-hub/ar-hub",
+    "pages/cart/cart",
+    "pages/mine/mine",
+    "pages/product-detail/product-detail",
+    "pages/product-list/product-list",
+    "pages/order-confirm/order-confirm",
+    "pages/order-list/order-list",
+    "pages/order-detail/order-detail",
+    "pages/logistics/logistics",
+    "pages/review/review",
+    "pages/after-sale/after-sale",
+    "pages/trace/trace",
+    "pages/ar-view/ar-view",
+    "pages/vip-center/vip-center",
+    "pages/coupon/coupon",
+    "pages/address/address",
+    "pages/address-edit/address-edit",
+    "pages/enterprise/enterprise",
+    "pages/search/search",
+    "pages/search-result/search-result",
+    "pages/favorites/favorites",
+    "pages/about/about"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#1A3A2A",
+    "navigationBarTitleText": "粤东甄选",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5EFE0",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false,
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8B7158",
+    "selectedColor": "#597445",
+    "backgroundColor": "#F5EFE0",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/images/tabbar/home.png",
+        "selectedIconPath": "assets/images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "assets/images/tabbar/category.png",
+        "selectedIconPath": "assets/images/tabbar/category-active.png"
+      },
+      {
+        "pagePath": "pages/ar-hub/ar-hub",
+        "text": "AR甄选",
+        "iconPath": "assets/images/tabbar/ar.png",
+        "selectedIconPath": "assets/images/tabbar/ar-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "assets/images/tabbar/cart.png",
+        "selectedIconPath": "assets/images/tabbar/cart-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/images/tabbar/mine.png",
+        "selectedIconPath": "assets/images/tabbar/mine-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "permission": {
+    "scope.camera": {
+      "desc": "用于扫描产品溯源码"
+    }
+  },
+  "requiredPrivateInfos": [],
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}
