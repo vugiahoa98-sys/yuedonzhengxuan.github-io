@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>粤东甄选 · 潮味天成</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --g1:#0F2D1C;--g2:#1C4430;--g3:#2B5E42;--g4:#3D7A56;--g5:#4E9168;
+  --gold:#C3A060;--gold2:#B8944A;--gold3:#E8C87A;--gold4:#F5E4A0;
+  --red:#B83025;--red2:#D04030;--cream:#F5EFE0;--cream2:#EDE4CF;
+  --parch:#FAF6EC;--parch2:#F2ECD8;--white:#FFFDF8;
+  --t1:#1A0F05;--t2:#3D2810;--t3:#6B4A28;--t4:#A07848;--t5:#C0A080;
+  --border:#C8B080;--shadow:rgba(15,45,28,.18);
+  --serif:'Noto Serif SC','SimSun','STSong',serif;
+  --sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+}
+html,body{height:100%;font-family:var(--sans);background:#2A4A38;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+
+/* ===== PHONE SHELL ===== */
+.phone-shell{width:393px;height:852px;background:#111;border-radius:54px;padding:10px;box-shadow:0 50px 120px rgba(0,0,0,.6),0 0 0 2px #2a2a2a,0 0 0 1px #444 inset;position:relative;flex-shrink:0}
+.phone-inner{width:100%;height:100%;background:var(--g1);border-radius:46px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:36px;background:#111;border-radius:0 0 22px 22px;z-index:50}
+.sb{height:48px;display:flex;align-items:center;justify-content:space-between;padding:14px 22px 0;font-size:13px;font-weight:600;color:#fff;flex-shrink:0;z-index:10;background:var(--g1)}
+.sb-icons{display:flex;gap:5px;align-items:center}
+
+/* ===== APP SHELL ===== */
+.app{flex:1;overflow:hidden;position:relative}
+.page{position:absolute;inset:0;overflow-y:auto;display:none;flex-direction:column;background:var(--g1)}
+.page::-webkit-scrollbar{display:none}
+.page.on{display:flex;animation:fin .25s ease}
+@keyframes fin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== TAB BAR ===== */
+.tabbar{height:88px;background:var(--g1);border-top:1px solid rgba(195,160,96,.3);display:flex;align-items:flex-start;padding-top:8px;flex-shrink:0;position:relative}
+.tabbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.2s;padding-top:2px}
+.tab-ico{width:28px;height:28px;display:flex;align-items:center;justify-content:center}
+.tab-lbl{font-size:10px;color:rgba(255,255,255,.5);font-weight:400;font-family:var(--sans)}
+.tab.on .tab-lbl{color:var(--gold)}
+.tab-center{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;margin-top:-18px}
+.tab-center-ico{width:52px;height:52px;background:linear-gradient(135deg,var(--red),#8B1C14);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(184,48,37,.5),0 0 0 3px var(--g1),0 0 0 4px var(--gold);font-size:22px}
+.tab-center.on .tab-center-ico{background:linear-gradient(135deg,var(--gold),#8B6020)}
+.badge{position:absolute;top:-2px;right:-2px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:9px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===== COMMON HEADER ===== */
+.pg-hdr{background:linear-gradient(180deg,var(--g1) 0%,var(--g2) 100%);flex-shrink:0;position:relative;overflow:hidden}
+.pg-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent)}
+
+/* ===== ORNAMENT BORDER ===== */
+.orn-frame{position:relative;border:1px solid rgba(195,160,96,.4);border-radius:4px}
+.orn-frame::before,.orn-frame::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid}
+.orn-frame::before{top:-1px;left:-1px;border-width:2px 0 0 2px;border-radius:3px 0 0 0}
+.orn-frame::after{top:-1px;right:-1px;border-width:2px 2px 0 0;border-radius:0 3px 0 0}
+.orn-b{position:relative}
+.orn-b::before,.orn-b::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid}
+.orn-b::before{bottom:-1px;left:-1px;border-width:0 0 2px 2px;border-radius:0 0 0 3px}
+.orn-b::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;border-radius:0 0 3px 0}
+
+/* ===== PRODUCT CARD ===== */
+.prod-card{background:var(--white);border-radius:12px;overflow:hidden;display:flex;gap:12px;padding:12px;position:relative}
+.prod-img{width:88px;height:88px;border-radius:8px;flex-shrink:0;overflow:hidden;position:relative}
+.prod-info{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.prod-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--t1);line-height:1.3}
+.prod-sub{font-size:11px;color:var(--t4);margin-top:3px;line-height:1.5}
+.prod-tags{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 6px;border-radius:3px;background:var(--cream2);color:var(--t3);font-weight:500}
+.tag.g{background:rgba(45,94,66,.1);color:var(--g3)}
+.prod-price{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--red);margin-top:4px}
+.prod-price span{font-size:13px}
+.prod-old{font-size:12px;color:var(--t5);text-decoration:line-through;margin-left:4px}
+.ar-btn{position:absolute;bottom:12px;right:12px;background:var(--g2);color:var(--gold);font-size:11px;padding:5px 10px;border-radius:14px;font-weight:700;border:1px solid rgba(195,160,96,.4);cursor:pointer;display:flex;align-items:center;gap:3px}
+
+/* ===== RED BUTTON ===== */
+.rbtn{background:linear-gradient(135deg,var(--red2),var(--red));color:#fff;border:none;border-radius:30px;padding:12px 28px;font-size:14px;font-weight:700;font-family:var(--serif);cursor:pointer;box-shadow:0 4px 14px rgba(184,48,37,.4);letter-spacing:.5px}
+.rbtn-sm{padding:8px 16px;font-size:12px;border-radius:20px}
+
+/* ===== SECTION TITLE ===== */
+.sec-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:8px}
+.sec-title::before,.sec-title::after{content:'◆';font-size:8px;color:var(--gold)}
+.sec-more{font-size:12px;color:var(--t4);display:flex;align-items:center;gap:2px}
+
+/* ============================
+   PAGE: 首页
+   ============================ */
+#p-home .hdr-top{padding:14px 16px 10px;display:flex;align-items:center;justify-content:space-between}
+#p-home .logo-area{display:flex;flex-direction:column;align-items:center;gap:2px}
+#p-home .logo-title{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--gold3);letter-spacing:2px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+#p-home .logo-en{font-size:9px;color:rgba(195,160,96,.7);letter-spacing:3px}
+#p-home .hdr-loc{display:flex;align-items:center;gap:3px;font-size:12px;color:rgba(255,255,255,.8);cursor:pointer}
+#p-home .slogan-bar{background:linear-gradient(90deg,transparent,rgba(195,160,96,.15),transparent);padding:5px 16px;text-align:center;font-size:11px;color:var(--gold3);letter-spacing:2px;font-family:var(--serif)}
+#p-home .arch-deco{display:flex;align-items:center;justify-content:center;padding:0 16px 6px}
+#p-home .arch-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+#p-home .arch-center{font-size:11px;color:var(--gold);padding:0 12px;letter-spacing:1px;white-space:nowrap}
+.scan-btn{width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(195,160,96,.3)}
+
+.search-row{margin:4px 16px 12px;display:flex;gap:8px}
+.search-box{flex:1;background:rgba(255,255,255,.12);border:1px solid rgba(195,160,96,.3);border-radius:20px;padding:9px 14px;display:flex;align-items:center;gap:6px}
+.search-box input{background:none;border:none;outline:none;font-size:12px;color:rgba(255,255,255,.7);width:100%;font-family:var(--sans)}
+.search-box input::placeholder{color:rgba(255,255,255,.45)}
+.search-btn2{background:var(--red);color:#fff;border:none;border-radius:20px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--sans);white-space:nowrap}
+
+/* Banner */
+.banner{margin:0 16px;border-radius:16px;overflow:hidden;position:relative;height:168px;flex-shrink:0}
+.banner-slide{position:absolute;inset:0;display:none;align-items:center}
+.banner-slide.on{display:flex}
+.banner-bg{position:absolute;inset:0}
+.banner-content{position:relative;z-index:2;padding:22px 20px;flex:1}
+.b-tag{background:rgba(184,48,37,.85);color:#fff;font-size:10px;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:8px;letter-spacing:1px;font-family:var(--serif)}
+.b-title{font-family:var(--serif);font-size:20px;font-weight:900;color:#fff;line-height:1.3;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.b-sub{font-size:11px;color:rgba(255,255,255,.85);margin-top:5px;line-height:1.5}
+.b-cta{margin-top:12px;background:var(--red);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--serif);letter-spacing:.5px;display:inline-flex;align-items:center;gap:4px}
+.b-img{width:130px;height:100%;object-fit:contain;position:relative;z-index:2;flex-shrink:0}
+.b-img-svg{width:120px;height:140px;flex-shrink:0;position:relative;z-index:2}
+.banner-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:3}
+.bdot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4)}
+.bdot.on{width:14px;border-radius:3px;background:#fff}
+
+/* Trust bar */
+.trust-bar{margin:10px 16px;background:var(--white);border-radius:10px;padding:10px 0;display:flex;align-items:center}
+.trust-item{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:10px;color:var(--t3);font-weight:500;border-right:1px solid var(--cream2)}
+.trust-item:last-child{border-right:none}
+.trust-icon{font-size:12px}
+
+/* Category icons */
+.cats{margin:10px 16px;background:var(--white);border-radius:14px;padding:14px 6px}
+.cats-row{display:flex;justify-content:space-around}
+.cat-item{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:4px 6px;border-radius:10px;transition:.15s}
+.cat-item:active{background:var(--cream)}
+.cat-ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--g2),var(--g3));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 8px var(--shadow)}
+.cat-lbl{font-size:11px;color:var(--t2);font-weight:500;text-align:center;line-height:1.3}
+.cat-sub{font-size:9px;color:var(--t5)}
+
+/* Activity banner */
+.act-banner{margin:10px 16px;background:linear-gradient(135deg,var(--g2),#1A4A28);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(195,160,96,.3)}
+.act-txt{font-size:12px;color:var(--gold3);font-weight:500}
+.act-sub{font-size:10px;color:rgba(195,160,96,.7);margin-top:2px}
+.act-go{background:var(--red);color:#fff;border:none;border-radius:16px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--sans);letter-spacing:.5px}
+
+/* Section */
+.sec-row{display:flex;align-items:center;justify-content:space-between;margin:14px 16px 10px}
+.content-bg{background:var(--parch);flex:1}
+.featured-list{margin:0 16px;display:flex;flex-direction:column;gap:10px}
+
+/* ============================
+   PAGE: 分类
+   ============================ */
+#p-cat .cat-pg-hdr{background:linear-gradient(180deg,var(--g1),var(--g2));padding:12px 16px;position:relative;flex-shrink:0}
+#p-cat .cat-pg-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--gold3);text-align:center;letter-spacing:2px}
+#p-cat .pg-deco{text-align:center;font-size:9px;color:rgba(195,160,96,.6);letter-spacing:3px;margin-top:2px}
+#p-cat .cat-body{flex:1;display:flex;overflow:hidden}
+#p-cat .cat-sidebar{width:80px;background:var(--g1);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
+#p-cat .cat-sidebar::-webkit-scrollbar{display:none}
+.side-item{padding:16px 8px;text-align:center;cursor:pointer;border-left:3px solid transparent;transition:.2s}
+.side-item.on{background:var(--parch);border-left-color:var(--gold);border-radius:0 8px 8px 0}
+.side-item .s-ico{font-size:20px;margin-bottom:4px}
+.side-item .s-lbl{font-size:11px;color:rgba(255,255,255,.7);font-weight:500}
+.side-item.on .s-lbl{color:var(--g2);font-weight:700}
+#p-cat .cat-content{flex:1;background:var(--parch);overflow-y:auto;padding:10px}
+#p-cat .cat-content::-webkit-scrollbar{display:none}
+.filter-row{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.filt{padding:5px 10px;border-radius:14px;background:rgba(45,94,66,.12);font-size:11px;color:var(--g2);cursor:pointer;border:1px solid transparent;font-weight:500}
+.filt.on{background:var(--g2);color:var(--gold);border-color:var(--gold2)}
+.cat-prod-list{display:flex;flex-direction:column;gap:10px}
+.cat-prod-card{background:var(--white);border-radius:12px;overflow:hidden;display:flex;gap:10px;padding:10px;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.cat-pimg{width:80px;height:80px;border-radius:8px;flex-shrink:0;overflow:hidden}
+.cat-pinfo{flex:1}
+.cat-pname{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.cat-psub{font-size:10px;color:var(--t4);margin-bottom:5px;line-height:1.4}
+.cat-pp{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--red)}
+.cat-pp-old{font-size:11px;color:var(--t5);text-decoration:line-through;margin-left:4px}
+.cat-ar{position:absolute;bottom:10px;right:10px;background:var(--g2);color:var(--gold);font-size:10px;padding:4px 8px;border-radius:10px;font-weight:700;border:1px solid rgba(195,160,96,.4)}
+
+/* ============================
+   PAGE: 发现 AR
+   ============================ */
+#p-ar{background:var(--g1)}
+#p-ar .ar-hdr{padding:12px 16px;background:linear-gradient(180deg,var(--g1),var(--g2));flex-shrink:0}
+#p-ar .ar-title{font-family:var(--serif);font-size:18px;font-weight:900;color:var(--gold3);text-align:center;letter-spacing:3px}
+#p-ar .ar-sub{font-size:11px;color:rgba(195,160,96,.7);text-align:center;letter-spacing:2px;margin-top:3px}
+.ar-card{margin:10px 16px;border-radius:16px;overflow:hidden;position:relative;border:1px solid rgba(195,160,96,.3)}
+.ar-card-top{height:180px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ar-card-info{background:var(--parch);padding:14px}
+.ar-type{background:var(--g1);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:10px;font-weight:700;margin-bottom:8px;display:inline-block;letter-spacing:1px}
+.ar-card-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--t1);margin-bottom:5px}
+.ar-feats{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.ar-feat{font-size:10px;padding:3px 8px;background:rgba(45,94,66,.1);color:var(--g3);border-radius:8px}
+.ar-cta{background:linear-gradient(135deg,var(--red2),var(--red));color:#fff;border:none;border-radius:24px;padding:12px 0;width:100%;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--serif);letter-spacing:1px;box-shadow:0 4px 14px rgba(184,48,37,.4)}
+.ar-grid{margin:10px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ar-mini-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.ar-mini-top{height:110px;position:relative;overflow:hidden}
+.ar-mini-info{padding:10px}
+.ar-mini-name{font-family:var(--serif);font-size:12px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.ar-mini-p{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--red)}
+.ar-mini-btn{background:var(--g2);color:var(--gold);font-size:10px;padding:4px 8px;border-radius:8px;font-weight:700;margin-top:6px;display:inline-block;cursor:pointer;border:1px solid rgba(195,160,96,.4)}
+
+/* ============================
+   PAGE: 购物车
+   ============================ */
+#p-cart{background:var(--parch)}
+#p-cart .cart-hdr{background:linear-gradient(180deg,var(--g1),var(--g2));padding:12px 16px 14px;flex-shrink:0;position:relative}
+#p-cart .cart-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#p-cart .cart-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--gold3);text-align:center;letter-spacing:2px}
+.cart-selall{display:flex;align-items:center;gap:6px;padding:12px 16px;background:var(--white);margin-bottom:8px;font-size:13px;color:var(--t2)}
+.cart-item-card{background:var(--white);margin:0 16px 10px;border-radius:14px;overflow:hidden;padding:14px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.ci-top{display:flex;gap:12px;align-items:flex-start}
+.ci-checkbox{width:20px;height:20px;border-radius:50%;border:2px solid var(--g3);background:var(--g3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px;cursor:pointer}
+.ci-img{width:80px;height:80px;border-radius:10px;flex-shrink:0;overflow:hidden}
+.ci-info{flex:1}
+.ci-name{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--t1)}
+.ci-spec{font-size:11px;color:var(--t4);margin-top:3px}
+.ci-pp{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--red);margin-top:6px}
+.ci-pp-old{font-size:11px;color:var(--t5);text-decoration:line-through;margin-left:4px}
+.ci-promo{background:rgba(184,48,37,.08);color:var(--red);font-size:10px;padding:2px 8px;border-radius:4px;display:inline-block;margin-top:4px}
+.ci-ar{background:rgba(45,94,66,.1);color:var(--g3);font-size:10px;padding:3px 8px;border-radius:8px;display:inline-block;margin-top:4px;font-weight:600;margin-left:4px;cursor:pointer}
+.qty-row{display:flex;align-items:center;justify-content:flex-end;gap:0;margin-top:10px}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--cream2);background:var(--parch);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--t2);font-weight:300}
+.qty-num{width:40px;text-align:center;font-size:15px;font-weight:700;color:var(--t1)}
+.cart-summary{background:var(--white);margin:0 16px;border-radius:14px;padding:14px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;color:var(--t3);margin-bottom:8px}
+.sum-row.total{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--t1);border-top:1px solid var(--cream2);padding-top:10px;margin-top:4px}
+.sum-row .price{color:var(--red);font-weight:700}
+.sum-row .save{color:var(--g3)}
+.cart-bottom{background:var(--g1);margin:0 16px 12px;border-radius:14px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(195,160,96,.2)}
+.cb-total{font-family:var(--serif);font-size:18px;font-weight:700;color:#fff}
+.cb-total span{font-size:12px;font-weight:400;color:rgba(255,255,255,.6);font-family:var(--sans)}
+.cb-save{font-size:11px;color:var(--gold);margin-top:2px}
+
+/* ============================
+   PAGE: 我的
+   ============================ */
+#p-mine{background:var(--g1)}
+#p-mine .mine-hdr{background:linear-gradient(180deg,var(--g1),var(--g2));padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+#p-mine .mine-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--gold3);letter-spacing:2px;text-align:center;flex:1}
+.mine-tools{display:flex;gap:10px}
+.mine-tool{width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+.mine-profile{background:linear-gradient(135deg,var(--g2),#163A22);margin:10px 16px;border-radius:18px;padding:18px;border:1px solid rgba(195,160,96,.25);position:relative;overflow:hidden}
+.mine-profile::before{content:'';position:absolute;top:-30px;right:-20px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(195,160,96,.1),transparent)}
+.mine-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.mine-avatar{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#4E9168,#2B5E42);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.mine-uname{font-family:var(--serif);font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.mine-vip{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(90deg,#B8944A,#E8C87A,#B8944A);color:#3D2810;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
+.mine-id{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+.mine-pts{text-align:right}
+.mine-pts-num{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--gold3)}
+.mine-pts-lbl{font-size:10px;color:rgba(195,160,96,.6);text-align:center}
+.prog-row{margin-bottom:4px;font-size:11px;color:rgba(255,255,255,.6);display:flex;justify-content:space-between}
+.prog-bar{background:rgba(255,255,255,.15);border-radius:4px;height:5px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold3));border-radius:4px;width:40%}
+.mine-rights{display:flex;justify-content:space-around;padding-top:12px;border-top:1px solid rgba(195,160,96,.2)}
+.right-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.right-ico{font-size:20px}
+.right-lbl{font-size:10px;color:rgba(255,255,255,.7)}
+
+.mine-orders{background:var(--white);margin:10px 16px;border-radius:16px;padding:14px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.mo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.mo-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--t1)}
+.mo-all{font-size:12px;color:var(--g3);display:flex;align-items:center;gap:2px}
+.orders-icons{display:flex;justify-content:space-around}
+.oi-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;position:relative}
+.oi-ico{font-size:26px}
+.oi-lbl{font-size:11px;color:var(--t3)}
+.oi-badge{position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:9px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.mine-menu{background:var(--white);margin:10px 16px;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.mi{display:flex;align-items:center;padding:14px 16px;gap:12px;border-bottom:1px solid var(--cream);cursor:pointer;transition:.15s}
+.mi:last-child{border-bottom:none}
+.mi:active{background:var(--cream)}
+.mi-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.mi-g{background:rgba(45,94,66,.1)}
+.mi-r{background:rgba(184,48,37,.1)}
+.mi-b{background:rgba(195,160,96,.15)}
+.mi-lbl{flex:1;font-size:14px;color:var(--t1);font-weight:500}
+.mi-val{font-size:12px;color:var(--t4);display:flex;align-items:center;gap:3px}
+.mi-badge{background:rgba(184,48,37,.1);color:var(--red);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+.mi-gbadge{background:rgba(45,94,66,.1);color:var(--g3);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+
+.mine-brand-banner{margin:10px 16px 16px;background:linear-gradient(135deg,var(--g2),#163A22);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(195,160,96,.25)}
+.mbb-txt{font-family:var(--serif);font-size:13px;color:var(--gold3);font-weight:700}
+.mbb-sub{font-size:10px;color:rgba(195,160,96,.6);margin-top:3px}
+.mbb-img{font-size:32px}
+
+/* ============================
+   DECORATIVE ELEMENTS
+   ============================ */
+/* Tea cans as CSS art */
+.tea-can{display:inline-block;position:relative}
+.product-visual{width:100%;height:100%;background:linear-gradient(135deg,#1E4A2E 0%,#2D6B40 40%,#1A3D25 100%);display:flex;align-items:center;justify-content:center;font-size:32px}
+.product-visual.shrimp{background:linear-gradient(135deg,#1A3A5C 0%,#2A5A8A 40%,#0F2840 100%)}
+.product-visual.goose{background:linear-gradient(135deg,#5C3A1A 0%,#8A5A2A 40%,#3D2010 100%)}
+.product-visual.beef{background:linear-gradient(135deg,#4A1A1A 0%,#7A2A2A 40%,#2A0F0F 100%)}
+.pv-label{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:9px;color:rgba(255,255,255,.7);font-family:var(--serif);letter-spacing:1px}
+
+/* Banner backgrounds */
+.bn-tea{background:linear-gradient(135deg,#1C3D28 0%,#0F2518 60%,#1C3D28 100%)}
+.bn-sea{background:linear-gradient(135deg,#0F2840 0%,#1A3D60 60%,#0A1E30 100%)}
+.bn-gift{background:linear-gradient(135deg,#2D1C0A 0%,#4A3015 60%,#1A1008 100%)}
+
+/* Float deco */
+.gold-deco{position:absolute;color:rgba(195,160,96,.15);font-size:80px;pointer-events:none;z-index:0}
+
+/* Wave ornament */
+.wave-bar{height:6px;background:linear-gradient(90deg,transparent,rgba(195,160,96,.3),rgba(195,160,96,.5),rgba(195,160,96,.3),transparent);margin:0 16px;border-radius:3px}
+
+@media(max-width:420px){
+  html,body{padding:0;background:var(--g1)}
+  .phone-shell{width:100%;height:100vh;border-radius:0;padding:0;box-shadow:none}
+  .phone-inner{border-radius:0}
+  .notch{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="phone-shell">
+<div class="phone-inner">
+
+<!-- Status Bar -->
+<div class="sb">
+  <span style="font-size:14px;font-weight:700;color:#fff">9:41</span>
+  <div class="notch"></div>
+  <div class="sb-icons">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="4" width="3" height="8" rx="1" fill="white" opacity=".9"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1" fill="white" opacity=".9"/><rect x="9" y="1" width="3" height="11" rx="1" fill="white" opacity=".9"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="white" opacity=".4"/></svg>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M8.5 3 Q13 0 16.5 4" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M8.5 3 Q4 0 0.5 4" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M8.5 3 Q11.5 1.5 14 5.5" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M8.5 3 Q5.5 1.5 3 5.5" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="8.5" cy="9" r="2" fill="white"/></svg>
+    <svg width="28" height="13" viewBox="0 0 28 13"><rect x="0" y="1" width="23" height="11" rx="3" stroke="white" stroke-width="1.5" fill="none"/><rect x="1.5" y="2.5" width="18" height="8" rx="1.5" fill="white"/><path d="M24.5 4.5 Q26.5 5.2 26.5 6.5 Q26.5 7.8 24.5 8.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+  </div>
+</div>
+
+<!-- App -->
+<div class="app">
+
+<!-- ========================================
+     PAGE: 首页
+     ======================================== -->
+<div class="page on" id="p-home">
+  <div class="pg-hdr">
+    <div id="p-home" style="padding:14px 16px 6px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.7);cursor:pointer">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M6 0C3.8 0 2 1.8 2 4C2 7 6 12 6 12C6 12 10 7 10 4C10 1.8 8.2 0 6 0ZM6 5.5C5.2 5.5 4.5 4.8 4.5 4C4.5 3.2 5.2 2.5 6 2.5C6.8 2.5 7.5 3.2 7.5 4C7.5 4.8 6.8 5.5 6 5.5Z" fill="rgba(255,255,255,.7)"/></svg>
+          广东·潮汕
+        </div>
+        <div style="text-align:center;flex:1">
+          <div style="font-family:var(--serif);font-size:21px;font-weight:900;color:var(--gold3);letter-spacing:2px;text-shadow:0 2px 8px rgba(0,0,0,.4)">粤东甄选</div>
+          <div style="font-size:8px;color:rgba(195,160,96,.6);letter-spacing:3px;margin-top:1px">YUEDONG ZHENXUAN</div>
+        </div>
+        <div class="scan-btn">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="rgba(195,160,96,.8)" stroke-width="1.5" fill="none"/><rect x="11" y="1" width="6" height="6" rx="1" stroke="rgba(195,160,96,.8)" stroke-width="1.5" fill="none"/><rect x="1" y="11" width="6" height="6" rx="1" stroke="rgba(195,160,96,.8)" stroke-width="1.5" fill="none"/><rect x="2.5" y="2.5" width="3" height="3" rx=".5" fill="rgba(195,160,96,.7)"/><rect x="12.5" y="2.5" width="3" height="3" rx=".5" fill="rgba(195,160,96,.7)"/><rect x="2.5" y="12.5" width="3" height="3" rx=".5" fill="rgba(195,160,96,.7)"/><path d="M11 11 L11 13 M13 11 L17 11 M17 15 L15 15 L15 17 M11 15 L13 15" stroke="rgba(195,160,96,.8)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <!-- Roof decoration SVG -->
+      <div style="text-align:center;margin-bottom:4px">
+        <svg width="260" height="22" viewBox="0 0 260 22">
+          <path d="M30 20 L130 2 L230 20" stroke="rgba(195,160,96,.5)" stroke-width="1.5" fill="none"/>
+          <path d="M50 20 L130 5 L210 20" stroke="rgba(195,160,96,.3)" stroke-width="1" fill="none"/>
+          <rect x="5" y="19" width="250" height="1.5" fill="rgba(195,160,96,.4)" rx="1"/>
+          <circle cx="130" cy="2" r="2.5" fill="var(--gold)"/>
+          <circle cx="30" cy="20" r="2" fill="rgba(195,160,96,.5)"/>
+          <circle cx="230" cy="20" r="2" fill="rgba(195,160,96,.5)"/>
+        </svg>
+      </div>
+      <div style="background:rgba(184,48,37,.7);text-align:center;padding:4px 0;font-size:10px;color:#fff;letter-spacing:2px;font-family:var(--serif);border-radius:2px;margin-bottom:4px">潮的臻品 · 匠心甄选</div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div style="background:var(--g2);padding:6px 16px 10px">
+    <div class="search-row" style="margin:0">
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><path d="M9.5 9.5 L12.5 12.5" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input type="text" placeholder="搜索凤凰单丛、老香黄、南澳海鲜...">
+      </div>
+      <button class="search-btn2">搜索</button>
+    </div>
+  </div>
+
+  <!-- Content area -->
+  <div style="background:var(--parch);flex:1;overflow-y:auto" id="home-scroll">
+    <!-- Banner -->
+    <div class="banner" style="margin:12px 16px;height:172px">
+      <div class="banner-slide on bn-tea">
+        <div class="banner-bg" style="background:linear-gradient(135deg,#0F2518 0%,#1C3D28 100%)">
+          <!-- subtle texture dots -->
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(195,160,96,.08) 0%,transparent 60%)"></div>
+          <!-- plum blossoms deco -->
+          <svg style="position:absolute;left:0;bottom:0;opacity:.15" width="120" height="80" viewBox="0 0 120 80"><circle cx="20" cy="60" r="8" fill="var(--gold)"/><circle cx="35" cy="48" r="6" fill="var(--gold)"/><circle cx="50" cy="38" r="5" fill="var(--gold)"/><path d="M20 60 L50 38" stroke="rgba(195,160,96,.5)" stroke-width="1"/></svg>
+        </div>
+        <div class="banner-content">
+          <div class="b-tag">非遗传承</div>
+          <div class="b-title">一盏工夫·半日清闲</div>
+          <div class="b-sub">潮汕工夫茶·非遗传承</div>
+          <button class="b-cta">探索工夫茶礼 »</button>
+        </div>
+        <div style="width:120px;height:165px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;z-index:2">
+          <!-- Tea can illustration -->
+          <svg width="90" height="140" viewBox="0 0 90 140">
+            <!-- Can body -->
+            <ellipse cx="45" cy="28" rx="32" ry="8" fill="#C3A060" opacity=".9"/>
+            <rect x="13" y="28" width="64" height="88" fill="url(#cg1)"/>
+            <ellipse cx="45" cy="116" rx="32" ry="8" fill="#1A3D25"/>
+            <!-- Can design -->
+            <defs><linearGradient id="cg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1A4A30"/><stop offset="40%" stop-color="#2D6B40"/><stop offset="100%" stop-color="#1A3D25"/></linearGradient></defs>
+            <!-- Gold band -->
+            <rect x="13" y="28" width="64" height="12" fill="rgba(195,160,96,.5)"/>
+            <rect x="13" y="104" width="64" height="12" fill="rgba(195,160,96,.5)"/>
+            <!-- Label -->
+            <rect x="20" y="46" width="50" height="52" rx="4" fill="rgba(195,160,96,.12)" stroke="rgba(195,160,96,.3)" stroke-width="1"/>
+            <text x="45" y="62" text-anchor="middle" font-size="8" fill="var(--gold)" font-family="serif" letter-spacing="2">粤东甄选</text>
+            <text x="45" y="78" text-anchor="middle" font-size="7" fill="rgba(195,160,96,.8)" font-family="serif">凤凰单丛</text>
+            <text x="45" y="90" text-anchor="middle" font-size="6" fill="rgba(195,160,96,.6)" font-family="serif">宋种蜜兰香</text>
+            <!-- Lid knob -->
+            <ellipse cx="45" cy="24" rx="8" ry="3" fill="#C3A060"/>
+            <circle cx="45" cy="22" r="5" fill="#B8944A"/>
+          </svg>
+        </div>
+      </div>
+      <div class="banner-dots"><div class="bdot on"></div><div class="bdot"></div><div class="bdot"></div></div>
+    </div>
+
+    <!-- Trust bar -->
+    <div class="trust-bar">
+      <div class="trust-item"><span class="trust-icon">🛡</span>正品溯源</div>
+      <div class="trust-item"><span class="trust-icon">🌿</span>产地直发</div>
+      <div class="trust-item"><span class="trust-icon">❄️</span>顺丰冷链</div>
+      <div class="trust-item" style="border:none"><span class="trust-icon">✨</span>非遗甄选</div>
+    </div>
+
+    <!-- Category -->
+    <div class="cats">
+      <div class="cats-row">
+        <div class="cat-item">
+          <div class="cat-ico">🍵</div>
+          <div class="cat-lbl">工夫茶礼</div>
+          <div class="cat-sub">凤凰单丛</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-ico">🦐</div>
+          <div class="cat-lbl">南澳海鲜</div>
+          <div class="cat-sub">现捕现发</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-ico">🍖</div>
+          <div class="cat-lbl">潮汕特产</div>
+          <div class="cat-sub">牛肉丸</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-ico">🎁</div>
+          <div class="cat-lbl">非遗手信</div>
+          <div class="cat-sub">传统工艺</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-ico">🌸</div>
+          <div class="cat-lbl">节气臻选</div>
+          <div class="cat-sub">应季而食</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity banner -->
+    <div class="act-banner">
+      <div>
+        <div class="act-txt">🎋 端午粽礼·潮汕技艺</div>
+        <div class="act-sub">手工粽子礼盒 热销中</div>
+      </div>
+      <button class="act-go">GO</button>
+    </div>
+
+    <!-- Featured -->
+    <div class="sec-row">
+      <div class="sec-title">甄选好物</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span style="background:rgba(184,48,37,.1);color:var(--red);font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600">潮汕风味</span>
+        <span style="background:rgba(45,94,66,.1);color:var(--g3);font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600">品质推荐</span>
+        <div class="sec-more">查看全部 <span>›</span></div>
+      </div>
+    </div>
+
+    <div class="featured-list">
+      <!-- Product 1 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <div class="product-visual">
+            <svg width="70" height="85" viewBox="0 0 70 85"><ellipse cx="35" cy="15" rx="22" ry="5" fill="#C3A060" opacity=".9"/><rect x="13" y="15" width="44" height="56" fill="url(#pg1)"/><ellipse cx="35" cy="71" rx="22" ry="5" fill="#1A3D25"/><defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1A4A30"/><stop offset="50%" stop-color="#2D6B40"/><stop offset="100%" stop-color="#1A3D25"/></linearGradient></defs><rect x="13" y="15" width="44" height="8" fill="rgba(195,160,96,.5)"/><rect x="13" y="63" width="44" height="8" fill="rgba(195,160,96,.5)"/><rect x="18" y="28" width="34" height="30" rx="3" fill="rgba(195,160,96,.12)" stroke="rgba(195,160,96,.4)" stroke-width="1"/><text x="35" y="40" text-anchor="middle" font-size="5" fill="var(--gold)" font-family="serif" letter-spacing="1">粤东甄选</text><text x="35" y="50" text-anchor="middle" font-size="5" fill="rgba(195,160,96,.8)" font-family="serif">凤凰单丛</text><ellipse cx="35" cy="12" rx="5" ry="2" fill="#B8944A"/><circle cx="35" cy="11" r="3.5" fill="#A07840"/></svg>
+          </div>
+          <div style="position:absolute;bottom:4px;left:0;right:0;text-align:center;background:rgba(0,0,0,.5);font-size:8px;color:var(--gold);padding:2px;font-family:var(--serif)">AR赏茶</div>
+        </div>
+        <div class="prod-info">
+          <div>
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+              <span style="background:rgba(184,48,37,.1);color:var(--red);font-size:9px;padding:1px 6px;border-radius:3px;font-weight:600">非遗监制</span>
+            </div>
+            <div class="prod-name">凤凰单丛・蜜兰香</div>
+            <div class="prod-sub">花香蜜韵·回甘持久 | 2024年春茶</div>
+            <div class="prod-tags">
+              <span class="tag g">核心产区</span>
+              <span class="tag">炭焙工艺</span>
+              <span class="tag">礼盒装125g</span>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:4px">
+              <div class="prod-price"><span>¥</span>328</div>
+              <div class="prod-old">¥998</div>
+            </div>
+            <div style="font-size:10px;color:var(--t4);margin-top:2px">已售 2.3k+ | 好评 99%</div>
+          </div>
+        </div>
+        <div class="ar-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4" height="4" rx="1" stroke="var(--gold)" stroke-width="1.2"/><rect x="7" y="1" width="4" height="4" rx="1" stroke="var(--gold)" stroke-width="1.2"/><rect x="1" y="7" width="4" height="4" rx="1" stroke="var(--gold)" stroke-width="1.2"/><path d="M7 8 L11 8 M9 7 L9 11" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round"/></svg>
+          AR赏茶
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <div class="product-visual shrimp">
+            <svg width="70" height="85" viewBox="0 0 70 85"><path d="M15 70 Q20 40 35 25 Q50 10 60 15" stroke="#E8C07A" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M18 65 Q23 38 36 24" stroke="#E8C07A" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".7"/><circle cx="60" cy="14" r="6" fill="#E8C07A"/><path d="M60 8 L63 3 M60 8 L65 6" stroke="#C8A060" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="35" cy="60" rx="25" ry="8" fill="#1A3A5C" opacity=".5"/><text x="35" y="80" text-anchor="middle" font-size="8" fill="rgba(232,192,122,.8)" font-family="sans-serif">南澳</text></svg>
+          </div>
+          <div style="position:absolute;bottom:4px;left:0;right:0;text-align:center;background:rgba(0,0,0,.5);font-size:8px;color:var(--gold);padding:2px;font-family:var(--serif)">AR逛海产</div>
+        </div>
+        <div class="prod-info">
+          <div>
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+              <span style="background:rgba(45,94,66,.15);color:var(--g3);font-size:9px;padding:1px 6px;border-radius:3px;font-weight:600">当日捕捞</span>
+            </div>
+            <div class="prod-name">南澳野生・九节虾</div>
+            <div class="prod-sub">船冻锁鲜·个大饱满 | 顺丰冷链直达</div>
+            <div class="prod-tags">
+              <span class="tag g">野生捕捞</span>
+              <span class="tag">冰鲜锁活</span>
+              <span class="tag">500g/盒</span>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:4px">
+              <div class="prod-price"><span>¥</span>168</div>
+              <div class="prod-old">¥638</div>
+            </div>
+            <div style="font-size:10px;color:var(--t4);margin-top:2px">已售 1.8k+ | 好评 97%</div>
+          </div>
+        </div>
+        <div class="ar-btn" style="background:rgba(26,60,92,.8);border-color:rgba(100,160,220,.4);color:#7ABCF0">
+          AR逛海产
+        </div>
+      </div>
+    </div>
+
+    <!-- Season banner -->
+    <div style="margin:14px 16px;background:linear-gradient(135deg,var(--g2),#163A22);border-radius:12px;padding:12px 16px;border:1px solid rgba(195,160,96,.2)">
+      <div style="font-size:10px;color:var(--gold);font-family:var(--serif);letter-spacing:1px;margin-bottom:4px">🌿 春分·节气养生</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.85);display:flex;justify-content:space-between;align-items:center">
+        <span>宜饮 老香黄·清肝明目</span>
+        <span style="color:var(--gold);font-size:11px;cursor:pointer">查看节气推荐 ›</span>
+      </div>
+    </div>
+
+    <!-- More products row -->
+    <div class="sec-row" style="margin-top:4px">
+      <div class="sec-title">甄选推荐</div>
+      <div class="sec-more">查看全部 ›</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 16px 16px">
+      <div style="background:var(--white);border-radius:12px;overflow:hidden">
+        <div style="height:110px;background:linear-gradient(135deg,#1A4A30,#2D6B40);display:flex;align-items:center;justify-content:center;font-size:36px;position:relative">
+          🍵
+          <div style="position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font-size:8px;padding:2px 5px;border-radius:3px;font-weight:600">2024春</div>
+          <div style="position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.5);color:var(--gold);font-size:8px;padding:2px 5px;border-radius:4px">AR体验</div>
+        </div>
+        <div style="padding:8px">
+          <div style="font-family:var(--serif);font-size:12px;font-weight:700;color:var(--t1);margin-bottom:2px">凤凰单丛·蜜兰香</div>
+          <div style="font-size:10px;color:var(--t4);margin-bottom:6px">花香蜜韵·回甘持久</div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--red)">¥328</span>
+            <div style="width:24px;height:24px;background:var(--g2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <span style="color:var(--gold);font-size:16px;line-height:1;margin-top:-1px">+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:12px;overflow:hidden">
+        <div style="height:110px;background:linear-gradient(135deg,#5C3A1A,#8A5A2A);display:flex;align-items:center;justify-content:center;font-size:36px;position:relative">
+          🥩
+          <div style="position:absolute;top:6px;left:6px;background:var(--gold2);color:#fff;font-size:8px;padding:2px 5px;border-radius:3px;font-weight:600">手工</div>
+          <div style="position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.5);color:var(--gold);font-size:8px;padding:2px 5px;border-radius:4px">AR体验</div>
+        </div>
+        <div style="padding:8px">
+          <div style="font-family:var(--serif);font-size:12px;font-weight:700;color:var(--t1);margin-bottom:2px">潮汕手工牛肉丸</div>
+          <div style="font-size:10px;color:var(--t4);margin-bottom:6px">自然弹嫩·纯手工捶打</div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--red)">¥128</span>
+            <div style="width:24px;height:24px;background:var(--g2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <span style="color:var(--gold);font-size:16px;line-height:1;margin-top:-1px">+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page home -->
+
+<!-- ========================================
+     PAGE: 分类
+     ======================================== -->
+<div class="page" id="p-cat">
+  <div class="cat-pg-hdr">
+    <div style="position:absolute;top:10px;left:10px;font-size:10px;color:rgba(195,160,96,.5)">◈</div>
+    <div style="position:absolute;top:10px;right:10px;font-size:10px;color:rgba(195,160,96,.5)">◈</div>
+    <div class="cat-pg-title">· 分类页 ·</div>
+    <div class="pg-deco">CATEGORIES</div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+  </div>
+  <div class="cat-body">
+    <div class="cat-sidebar">
+      <div class="side-item on" onclick="setSide(this,'茶叶')">
+        <div class="s-ico">🍵</div>
+        <div class="s-lbl">茶叶</div>
+      </div>
+      <div class="side-item" onclick="setSide(this,'海鲜')">
+        <div class="s-ico">🦐</div>
+        <div class="s-lbl">海鲜</div>
+      </div>
+      <div class="side-item" onclick="setSide(this,'特产')">
+        <div class="s-ico">🎁</div>
+        <div class="s-lbl">特产</div>
+      </div>
+      <div class="side-item" onclick="setSide(this,'非遗')">
+        <div class="s-ico">🏛</div>
+        <div class="s-lbl">非遗</div>
+      </div>
+    </div>
+    <div class="cat-content">
+      <div class="filter-row">
+        <div class="filt on">综合推荐</div>
+        <div class="filt">价格 ↑</div>
+        <div class="filt">销量 ▾</div>
+        <div class="filt">新品 ▾</div>
+        <div class="filt" style="background:rgba(184,48,37,.1);color:var(--red);border-color:var(--red)">潮汕</div>
+      </div>
+      <div class="cat-prod-list">
+        <div class="cat-prod-card">
+          <div class="cat-pimg"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1A4A30,#2D6B40);display:flex;align-items:center;justify-content:center;font-size:28px">🍵</div></div>
+          <div class="cat-pinfo">
+            <div class="cat-pname">凤凰单丛・蜜兰香</div>
+            <div class="cat-psub">核心产区 | 回甘持久 | 125g/罐</div>
+            <div style="display:flex;gap:4px;margin-bottom:4px"><span style="font-size:9px;padding:1px 5px;background:rgba(45,94,66,.1);color:var(--g3);border-radius:3px">非遗监制</span></div>
+            <div><span class="cat-pp">¥328</span><span class="cat-pp-old">¥828</span></div>
+          </div>
+          <div class="cat-ar">AR溯源</div>
+        </div>
+        <div class="cat-prod-card">
+          <div class="cat-pimg"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1A3A5C,#2A5A8A);display:flex;align-items:center;justify-content:center;font-size:28px">🦐</div></div>
+          <div class="cat-pinfo">
+            <div class="cat-pname">南澳野生九节虾</div>
+            <div class="cat-psub">液氮锁鲜 | 精在含糖500g</div>
+            <div style="display:flex;gap:4px;margin-bottom:4px"><span style="font-size:9px;padding:1px 5px;background:rgba(26,60,92,.15);color:#2A6A9A;border-radius:3px">当日捕捞</span></div>
+            <div><span class="cat-pp">¥168</span><span class="cat-pp-old">¥889</span></div>
+          </div>
+          <div class="cat-ar">AR遗产</div>
+        </div>
+        <div class="cat-prod-card">
+          <div class="cat-pimg"><div style="width:100%;height:100%;background:linear-gradient(135deg,#4A3A1A,#7A5A2A);display:flex;align-items:center;justify-content:center;font-size:28px">🫖</div></div>
+          <div class="cat-pinfo">
+            <div class="cat-pname">新会陈皮普洱茶饼</div>
+            <div class="cat-psub">十年沉造 | 醇香蔓延</div>
+            <div style="display:flex;gap:4px;margin-bottom:4px"><span style="font-size:9px;padding:1px 5px;background:rgba(195,160,96,.15);color:var(--gold2);border-radius:3px">十年陈</span></div>
+            <div><span class="cat-pp">¥198</span><span class="cat-pp-old">¥898</span></div>
+          </div>
+          <div class="cat-ar">AR鉴赏</div>
+        </div>
+        <div class="cat-prod-card">
+          <div class="cat-pimg"><div style="width:100%;height:100%;background:linear-gradient(135deg,#3A1A1A,#6A2A2A);display:flex;align-items:center;justify-content:center;font-size:28px">🥩</div></div>
+          <div class="cat-pinfo">
+            <div class="cat-pname">潮汕工夫美食礼盒</div>
+            <div class="cat-pname" style="font-size:12px">壹焙韩韩 | 工夫来工玄</div>
+            <div><span class="cat-pp">¥298</span><span class="cat-pp-old">¥899</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page cat -->
+
+<!-- ========================================
+     PAGE: 发现 AR
+     ======================================== -->
+<div class="page" id="p-ar">
+  <div class="ar-hdr">
+    <div style="position:absolute;top:8px;left:12px;font-size:11px;color:rgba(195,160,96,.5)">◈◈</div>
+    <div style="position:absolute;top:8px;right:12px;font-size:11px;color:rgba(195,160,96,.5)">◈◈</div>
+    <div class="ar-title">AR 甄选</div>
+    <div class="ar-sub">沉浸式AR体验 等你发现</div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+  </div>
+  <div style="flex:1;overflow-y:auto;background:var(--g1);padding-bottom:8px">
+    <!-- AR Banner -->
+    <div class="ar-card">
+      <div class="ar-card-top" style="background:linear-gradient(135deg,#1A3D28,#0F2518)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+          <!-- Tea box AR illustration -->
+          <svg width="180" height="160" viewBox="0 0 180 160">
+            <!-- Wooden table -->
+            <rect x="20" y="110" width="140" height="30" rx="4" fill="#8B5A30" opacity=".6"/>
+            <!-- Tea box -->
+            <rect x="40" y="60" width="80" height="55" rx="4" fill="#1A4A30"/>
+            <rect x="40" y="60" width="80" height="55" rx="4" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity=".6"/>
+            <rect x="48" y="68" width="64" height="40" rx="2" fill="rgba(195,160,96,.08)" stroke="rgba(195,160,96,.3)" stroke-width="1"/>
+            <text x="80" y="82" text-anchor="middle" font-size="7" fill="var(--gold)" font-family="serif" letter-spacing="2">粤东甄选</text>
+            <text x="80" y="93" text-anchor="middle" font-size="6" fill="rgba(195,160,96,.7)" font-family="serif">凤凰单丛</text>
+            <!-- Tea can -->
+            <ellipse cx="140" cy="90" rx="15" ry="4" fill="#C3A060" opacity=".8"/>
+            <rect x="125" y="90" width="30" height="35" fill="#1C4430"/>
+            <ellipse cx="140" cy="125" rx="15" ry="4" fill="#0F2518"/>
+            <rect x="125" y="90" width="30" height="6" fill="rgba(195,160,96,.4)"/>
+            <ellipse cx="140" cy="87" rx="5" ry="2" fill="#B8944A"/>
+            <!-- Tea cups -->
+            <ellipse cx="55" cy="118" rx="12" ry="4" fill="#F0E8D0" opacity=".8"/>
+            <path d="M43 114 Q55 118 67 114" stroke="#E0D0A0" stroke-width="1" fill="#F5F0E0" opacity=".8"/>
+            <!-- 360 badge -->
+            <rect x="18" y="58" width="34" height="14" rx="7" fill="rgba(0,0,0,.6)"/>
+            <text x="35" y="68" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">°360</text>
+            <!-- AR scan lines -->
+            <rect x="25" y="25" width="20" height="20" fill="none" stroke="rgba(100,220,100,.6)" stroke-width="1.5"/>
+            <path d="M25 30 L25 25 L30 25" stroke="rgba(100,220,100,.8)" stroke-width="2" fill="none"/>
+            <path d="M40 25 L45 25 L45 30" stroke="rgba(100,220,100,.8)" stroke-width="2" fill="none"/>
+            <path d="M25 40 L25 45 L30 45" stroke="rgba(100,220,100,.8)" stroke-width="2" fill="none"/>
+            <path d="M40 45 L45 45 L45 40" stroke="rgba(100,220,100,.8)" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div style="position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:6px">
+          <div style="background:rgba(0,0,0,.5);border-radius:8px;padding:4px 6px;font-size:9px;color:rgba(255,255,255,.8);cursor:pointer">✕ 收藏</div>
+          <div style="background:rgba(0,0,0,.5);border-radius:8px;padding:4px 6px;font-size:9px;color:rgba(255,255,255,.8);cursor:pointer">⊞ 产品</div>
+          <div style="background:rgba(0,0,0,.5);border-radius:8px;padding:4px 6px;font-size:9px;color:rgba(255,255,255,.8);cursor:pointer">📷 拍摄</div>
+          <div style="background:rgba(0,0,0,.5);border-radius:8px;padding:4px 6px;font-size:9px;color:rgba(255,255,255,.8);cursor:pointer">⊕ 溯源</div>
+        </div>
+      </div>
+      <div class="ar-card-info">
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <div style="background:rgba(45,94,66,.15);color:var(--g3);font-size:10px;padding:3px 10px;border-radius:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,94,66,.3)">AR模式</div>
+          <div style="background:transparent;color:var(--t4);font-size:10px;padding:3px 10px;border-radius:10px;font-weight:700;cursor:pointer;border:1px solid var(--cream2)">产品详情</div>
+        </div>
+        <div class="ar-card-name">AR茗鉴 · 茶叶沉浸体验</div>
+        <div class="ar-feats">
+          <span class="ar-feat">桌面布置</span>
+          <span class="ar-feat">视觉找茶</span>
+          <span class="ar-feat">溯源观炭</span>
+          <span class="ar-feat">拍照分享</span>
+        </div>
+        <button class="ar-cta" onclick="alert('AR体验功能，真实小程序部署后可用📱')">立即AR体验</button>
+      </div>
+    </div>
+
+    <!-- AR Grid -->
+    <div style="margin:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="ar-mini-card">
+        <div class="ar-mini-top" style="background:linear-gradient(135deg,#1A3A5C,#0F2030)">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px">🦐</div>
+          <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.5);color:var(--gold);font-size:9px;padding:2px 6px;border-radius:6px;font-weight:700">AR遗产</div>
+        </div>
+        <div class="ar-mini-info">
+          <div class="ar-mini-name">南澳遗海产</div>
+          <div style="font-size:10px;color:var(--t4);margin-bottom:4px">周围捕捞 | 远近观炭</div>
+          <div class="ar-mini-p">¥168</div>
+          <div class="ar-mini-btn">AR逛海产</div>
+        </div>
+      </div>
+      <div class="ar-mini-card">
+        <div class="ar-mini-top" style="background:linear-gradient(135deg,#2D1A0A,#4A3015)">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px">🎁</div>
+          <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.5);color:var(--gold);font-size:9px;padding:2px 6px;border-radius:6px;font-weight:700">礼盒定制</div>
+        </div>
+        <div class="ar-mini-info">
+          <div class="ar-mini-name">节日礼盒定制</div>
+          <div style="font-size:10px;color:var(--t4);margin-bottom:4px">企业/节日/收藏礼盒</div>
+          <div class="ar-mini-p">¥268</div>
+          <div class="ar-mini-btn">AR定制</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AR info section -->
+    <div style="margin:0 16px 12px;background:var(--white);border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+      <div style="font-family:var(--serif);font-size:14px;font-weight:700;color:var(--g2);margin-bottom:12px;display:flex;align-items:center;gap:6px">
+        <span style="font-size:16px">🔍</span> AR识物 · 产地溯源
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--cream);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">📦</div>
+          <div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:3px">比例观察</div>
+          <div style="font-size:9px;color:var(--t4)">实景展示尺寸参考</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">🌿</div>
+          <div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:3px">亲叶循节</div>
+          <div style="font-size:9px;color:var(--t4)">产地溯源查看</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">📷</div>
+          <div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:3px">拍照分享</div>
+          <div style="font-size:9px;color:var(--t4)">与产品合照留念</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">🛒</div>
+          <div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:3px">购买同款</div>
+          <div style="font-size:9px;color:var(--t4)">一键加入购物车</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page ar -->
+
+<!-- ========================================
+     PAGE: 购物车
+     ======================================== -->
+<div class="page" id="p-cart">
+  <div class="cart-hdr">
+    <div style="position:absolute;top:8px;left:12px;font-size:10px;color:rgba(195,160,96,.5)">◈</div>
+    <div style="position:absolute;top:8px;right:12px;font-size:10px;color:rgba(195,160,96,.5)">◈</div>
+    <div class="cart-title">· 购物车 ·</div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding-bottom:8px">
+    <div class="cart-selall">
+      <div style="width:20px;height:20px;border-radius:50%;background:var(--g3);display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5 L4 7.5 L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span style="font-size:13px;color:var(--t2)">全选</span>
+    </div>
+
+    <!-- Cart items -->
+    <div class="cart-item-card">
+      <div class="ci-top">
+        <div class="ci-checkbox">
+          <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5 L4 7.5 L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="ci-img">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A4A30,#2D6B40);display:flex;align-items:center;justify-content:center;font-size:28px;position:relative">
+            🍵
+            <div style="position:absolute;bottom:3px;left:0;right:0;text-align:center;background:rgba(0,0,0,.5);font-size:7px;color:var(--gold);padding:1px">AR已甄选</div>
+          </div>
+        </div>
+        <div class="ci-info">
+          <div class="ci-name">凤凰单丛・蜜兰香</div>
+          <div class="ci-spec">优选 炭焙 125g</div>
+          <div class="ci-pp">¥328 <span class="ci-pp-old">¥328</span></div>
+          <div><span class="ci-promo">待享600减60</span><span class="ci-ar">AR已甄选</span></div>
+        </div>
+      </div>
+      <div class="qty-row">
+        <div class="qty-btn">−</div>
+        <div class="qty-num">1</div>
+        <div class="qty-btn" style="background:var(--g2);border-color:var(--g2);color:var(--gold)">+</div>
+      </div>
+    </div>
+
+    <div class="cart-item-card">
+      <div class="ci-top">
+        <div class="ci-checkbox">
+          <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5 L4 7.5 L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="ci-img">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A3A5C,#2A5A8A);display:flex;align-items:center;justify-content:center;font-size:28px;position:relative">
+            🦐
+            <div style="position:absolute;bottom:3px;left:0;right:0;text-align:center;background:rgba(0,0,0,.5);font-size:7px;color:var(--gold);padding:1px">AR已甄选</div>
+          </div>
+        </div>
+        <div class="ci-info">
+          <div class="ci-name">南澳野生九节虾</div>
+          <div class="ci-spec">优选 500g</div>
+          <div class="ci-pp">¥168 <span class="ci-pp-old">¥638</span></div>
+          <div><span class="ci-promo">待享400减50</span><span class="ci-ar">AR已甄选</span></div>
+        </div>
+      </div>
+      <div class="qty-row">
+        <div class="qty-btn">−</div>
+        <div class="qty-num">1</div>
+        <div class="qty-btn" style="background:var(--g2);border-color:var(--g2);color:var(--gold)">+</div>
+      </div>
+    </div>
+
+    <div class="cart-item-card">
+      <div class="ci-top">
+        <div class="ci-checkbox">
+          <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5 L4 7.5 L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="ci-img">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#4A1A1A,#7A2A2A);display:flex;align-items:center;justify-content:center;font-size:28px;position:relative">
+            🥩
+            <div style="position:absolute;bottom:3px;left:0;right:0;text-align:center;background:rgba(0,0,0,.5);font-size:7px;color:var(--gold);padding:1px">AR已甄选</div>
+          </div>
+        </div>
+        <div class="ci-info">
+          <div class="ci-name">潮汕芒各笈</div>
+          <div class="ci-spec">仟乃鸠辩 φ520g</div>
+          <div class="ci-pp">¥198 <span class="ci-pp-old">¥198</span></div>
+          <div><span class="ci-promo">待享600减60</span><span class="ci-ar">AR已甄选</span></div>
+        </div>
+      </div>
+      <div class="qty-row">
+        <div class="qty-btn">−</div>
+        <div class="qty-num">1</div>
+        <div class="qty-btn" style="background:var(--g2);border-color:var(--g2);color:var(--gold)">+</div>
+      </div>
+    </div>
+
+    <!-- Price summary -->
+    <div class="cart-summary">
+      <div class="sum-row"><span>小计</span><span class="price">¥694</span></div>
+      <div class="sum-row"><span>优惠券抵扣</span><span class="save">-¥110</span></div>
+      <div class="sum-row"><span>会员折扣 (95折)</span><span class="save">-¥19.40</span></div>
+      <div class="sum-row"><span>运费</span><span>顺丰 ¥0</span></div>
+      <div class="sum-row total"><span>合计</span><span class="price">¥564.60</span></div>
+    </div>
+
+    <!-- Promo bar -->
+    <div style="margin:10px 16px;padding:10px 14px;background:linear-gradient(90deg,rgba(45,94,66,.1),rgba(45,94,66,.05));border-radius:10px;border:1px solid rgba(45,94,66,.2);font-size:11px;color:var(--g3);text-align:center">
+      ★ 工夫茶 棒槿 / 荃 › 已享受会员专属优惠
+    </div>
+
+    <!-- Checkout bar -->
+    <div class="cart-bottom" style="margin-top:6px">
+      <div>
+        <div class="cb-total"><span>合计 </span>¥564.60</div>
+        <div class="cb-save">已优惠 ¥129.40</div>
+      </div>
+      <button class="rbtn" style="min-width:100px" onclick="alert('结算功能！真实小程序部署后可用💳')">结算</button>
+    </div>
+  </div>
+</div><!-- /page cart -->
+
+<!-- ========================================
+     PAGE: 我的
+     ======================================== -->
+<div class="page" id="p-mine">
+  <div class="mine-hdr">
+    <div style="width:32px"></div>
+    <div class="mine-title">· 我的 ·</div>
+    <div class="mine-tools">
+      <div class="mine-tool">🔔</div>
+      <div class="mine-tool">⚙️</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;background:var(--parch);padding-bottom:8px">
+    <!-- Profile card -->
+    <div style="background:linear-gradient(180deg,var(--g2),var(--g1));padding-bottom:10px">
+      <div class="mine-profile" style="margin:10px 16px">
+        <div class="mine-row">
+          <div class="mine-avatar">🧑</div>
+          <div style="flex:1">
+            <div class="mine-uname">潮汕小茶客 ✏️</div>
+            <div class="mine-vip">👑 VIP黄金会员</div>
+            <div class="mine-id">会员ID: 88888888</div>
+          </div>
+          <div class="mine-pts">
+            <div class="mine-pts-num">2880</div>
+            <div class="mine-pts-lbl">积分</div>
+          </div>
+        </div>
+        <div class="prog-row">
+          <span>成长值 1980/5000</span>
+          <span style="cursor:pointer;color:var(--gold)">会员中心 ›</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill"></div></div>
+        <div class="mine-rights">
+          <div class="right-item"><div class="right-ico">🎁</div><div class="right-lbl">会员礼包</div></div>
+          <div class="right-item"><div class="right-ico">%</div><div class="right-lbl">专享折扣</div></div>
+          <div class="right-item"><div class="right-ico">🚚</div><div class="right-lbl">优先发货</div></div>
+          <div class="right-item"><div class="right-ico">🎋</div><div class="right-lbl">节气礼遇</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders -->
+    <div class="mine-orders" style="margin-top:10px">
+      <div class="mo-header">
+        <div class="mo-title">我的订单</div>
+        <div class="mo-all">查看全部订单 ›</div>
+      </div>
+      <div class="orders-icons">
+        <div class="oi-item"><div class="oi-ico">👜</div><div class="oi-lbl">待付款</div><div class="oi-badge">2</div></div>
+        <div class="oi-item"><div class="oi-ico">📦</div><div class="oi-lbl">待发货</div><div class="oi-badge">1</div></div>
+        <div class="oi-item"><div class="oi-ico">🚛</div><div class="oi-lbl">待收货</div><div class="oi-badge">3</div></div>
+        <div class="oi-item"><div class="oi-ico">💬</div><div class="oi-lbl">待评价</div><div class="oi-badge">5</div></div>
+      </div>
+    </div>
+
+    <!-- Menu list -->
+    <div class="mine-menu">
+      <div class="mi">
+        <div class="mi-ico mi-g">📋</div>
+        <div class="mi-lbl">我的订单</div>
+        <div class="mi-val">查看全部 ›</div>
+      </div>
+      <div class="mi">
+        <div class="mi-ico mi-r">❤️</div>
+        <div class="mi-lbl">收藏宝贝</div>
+        <div class="mi-val"><span class="mi-badge">128</span> ›</div>
+      </div>
+      <div class="mi">
+        <div class="mi-ico mi-b">🎫</div>
+        <div class="mi-lbl">优惠券</div>
+        <div class="mi-val"><span class="mi-gbadge">5张可用</span> ›</div>
+      </div>
+      <div class="mi">
+        <div class="mi-ico mi-g">📍</div>
+        <div class="mi-lbl">地址管理</div>
+        <div class="mi-val">›</div>
+      </div>
+      <div class="mi">
+        <div class="mi-ico mi-r">🎧</div>
+        <div class="mi-lbl">客服与帮助</div>
+        <div class="mi-val">›</div>
+      </div>
+      <div class="mi" style="border:none">
+        <div class="mi-ico mi-b">ℹ️</div>
+        <div class="mi-lbl">关于我们</div>
+        <div class="mi-val">›</div>
+      </div>
+    </div>
+
+    <!-- Brand banner -->
+    <div class="mine-brand-banner">
+      <div>
+        <div class="mbb-txt">潮汕风味 · 匠心甄选</div>
+        <div class="mbb-sub">工夫茶香 &amp; 南澳鲜味</div>
+      </div>
+      <div class="mbb-img">🍵</div>
+    </div>
+  </div>
+</div><!-- /page mine -->
+
+</div><!-- /app -->
+
+<!-- Tab Bar -->
+<div class="tabbar">
+  <div class="tab on" id="t-home" onclick="nav('home')">
+    <div class="tab-ico">
+      <svg width="26" height="24" viewBox="0 0 26 24" fill="none">
+        <path d="M2 13 L13 3 L24 13 L24 23 L17 23 L17 17 Q17 15 13 15 Q9 15 9 17 L9 23 L2 23 Z" stroke="var(--gold)" stroke-width="1.8" fill="rgba(195,160,96,.15)" stroke-linejoin="round" id="h-on"/>
+        <path d="M2 13 L13 3 L24 13 L24 23 L17 23 L17 17 Q17 15 13 15 Q9 15 9 17 L9 23 L2 23 Z" stroke="rgba(255,255,255,.35)" stroke-width="1.6" fill="none" stroke-linejoin="round" id="h-off" style="display:none"/>
+      </svg>
+    </div>
+    <div class="tab-lbl" style="color:var(--gold)">首页</div>
+  </div>
+  <div class="tab" id="t-cat" onclick="nav('cat')">
+    <div class="tab-ico" style="position:relative">
+      <svg width="26" height="24" viewBox="0 0 26 24" fill="none">
+        <rect x="3" y="3" width="9" height="9" rx="2" stroke="rgba(255,255,255,.35)" stroke-width="1.6" id="c-off"/>
+        <rect x="14" y="3" width="9" height="9" rx="2" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
+        <rect x="3" y="14" width="9" height="9" rx="2" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
+        <rect x="14" y="14" width="9" height="9" rx="2" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
+      </svg>
+    </div>
+    <div class="tab-lbl">分类</div>
+  </div>
+  <div class="tab-center" id="t-ar" onclick="nav('ar')">
+    <div class="tab-center-ico">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="2" y="2" width="10" height="10" rx="2" stroke="white" stroke-width="1.8"/><rect x="14" y="2" width="10" height="10" rx="2" stroke="white" stroke-width="1.8"/><rect x="2" y="14" width="10" height="10" rx="2" stroke="white" stroke-width="1.8"/><path d="M14 17 L19 17 M19 14 L22 17 L19 20" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="tab-lbl" style="font-size:9px">AR甄选</div>
+  </div>
+  <div class="tab" id="t-cart" onclick="nav('cart')">
+    <div class="tab-ico" style="position:relative">
+      <svg width="26" height="24" viewBox="0 0 26 24" fill="none"><path d="M3 3 L6 3 L9 16 L20 16 L23 7 L8 7" stroke="rgba(255,255,255,.35)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="20" r="2" fill="rgba(255,255,255,.35)"/><circle cx="18" cy="20" r="2" fill="rgba(255,255,255,.35)"/></svg>
+      <div class="badge" style="top:-3px;right:-2px">2</div>
+    </div>
+    <div class="tab-lbl">购物车</div>
+  </div>
+  <div class="tab" id="t-mine" onclick="nav('mine')">
+    <div class="tab-ico">
+      <svg width="26" height="24" viewBox="0 0 26 24" fill="none"><circle cx="13" cy="8" r="5" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/><path d="M4 22 Q4 16 13 16 Q22 16 22 22" stroke="rgba(255,255,255,.35)" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="tab-lbl">我的</div>
+  </div>
+</div>
+
+</div><!-- /phone-inner -->
+</div><!-- /phone-shell -->
+
+<script>
+// Navigation
+function nav(tab) {
+  ['home','cat','ar','cart','mine'].forEach(function(t) {
+    var pg = document.getElementById('p-'+t);
+    var tb = document.getElementById('t-'+t);
+    if(!pg || !tb) return;
+    pg.classList.toggle('on', t===tab);
+    tb.classList.toggle('on', t===tab);
+    if(t===tab) tb.querySelector('.tab-lbl').style.color='var(--gold)';
+    else tb.querySelector('.tab-lbl').style.color='';
+  });
+}
+
+// Category sidebar
+function setSide(el, name) {
+  document.querySelectorAll('.side-item').forEach(function(s){ s.classList.remove('on'); });
+  el.classList.add('on');
+}
+
+// Banner auto-slide
+var bSlides = document.querySelectorAll('.banner-slide');
+var bDots = document.querySelectorAll('.bdot');
+var bIdx = 0;
+setInterval(function(){
+  if(bSlides.length <= 1) return;
+  bSlides[bIdx].classList.remove('on');
+  bDots[bIdx].classList.remove('on');
+  bIdx = (bIdx+1) % bSlides.length;
+  bSlides[bIdx].classList.add('on');
+  bDots[bIdx].classList.add('on');
+}, 3500);
+
+// Quantity buttons
+document.querySelectorAll('.qty-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var row = btn.closest('.qty-row');
+    var numEl = row.querySelector('.qty-num');
+    var n = parseInt(numEl.textContent);
+    if(btn.textContent.trim()==='−') n = Math.max(1, n-1);
+    else n = n+1;
+    numEl.textContent = n;
+  });
+});
+
+// Filter buttons
+document.querySelectorAll('.filt').forEach(function(f){
+  f.addEventListener('click', function(){
+    f.closest('.filter-row').querySelectorAll('.filt').forEach(function(ff){ ff.classList.remove('on'); });
+    f.classList.add('on');
+  });
+});
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"b2074e7888b746fe9fbbc15492b4c3d4","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
